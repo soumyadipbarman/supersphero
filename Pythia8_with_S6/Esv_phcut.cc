@@ -3,8 +3,13 @@
 
 //Read the Pyhtia sample data and calculate the Eventshape variable with the phase space cut 
 //Author :S.k.kundu   cerated on Fed 2018      update on 24 sep 2018
+//Modified: S. Barman  dated: 15 Nov 2022
+
 //Run this code with CLHEP along with root
-//$ g++ Esv_phcut.cc EventShape_vector.cc -o Esv_phcut -I/home/suman/Buildclhep/ -L/home/suman/Bulidclhep/ -O -ansi -pedantic -Wall -D_GNU_SOURCE -std=c++11 -D_GNU_SOURCE -pthread -O2 -g -DNDEBUG `root-config --cflags`-Wl,-rpath,./ `root-config --glibs` -lCLHEP-Vector-2.4.0.0
+//g++ Esv_phcut.cc EventShape_vector.cc -o Esv_phcut -I/home/soumyadip/Package/clhep/clhep2452/CLHEP_build -L/home/soumyadip/Package/clhep/clhep2452/CLHEP_install/lib -O -ansi -pedantic -Wall -D_GNU_SOURCE -std=c++11 -D_GNU_SOURCE -pthread -O2 -g -DNDEBUG `root-config --cflags`-Wl,-rpath,./ `root-config --glibs` -lCLHEP-Vector-2.4.5.2 -L/home/soumyadip/Package/Root/Root62606build/lib -lCore -lImt -lRIO -lNet -lHist -lGraf -lGraf3d -lGpad -lROOTDataFrame -lROOTVecOps -lTree -lTreePlayer -lRint -lPostscript -lMatrix -lPhysics -lMathCore -lThread -lMultiProc -pthread -lm -ldl -rdynamic -I/home/soumyadip/Package/Root/Root62606build/include/
+
+//Run: ./Esv_phcut input.root output.root
+//---------------------------------------------------------------------------------------
 
 #include <iostream>
 #include <cmath>
@@ -12,7 +17,7 @@
 #include <vector>
 #include <TArrayC.h>
 #include <string>
-#include "TH1.h"                                 // for histrograming
+#include "TH1.h"                       // for histrograming
 #include "TH2D.h"
 #include "TH1F.h"
 #include "TH2F.h"
@@ -30,7 +35,6 @@
 #include "CLHEP/Vector/LorentzVector.h"
 #include "CLHEP/Vector/ThreeVector.h"
 
-
 using namespace std;
 using namespace CLHEP;
 
@@ -38,10 +42,9 @@ using namespace CLHEP;
 int main(int argc, char* argv[] ){
   
   TFile *f = new TFile(argv[1]);  // load the root file 
-//  TFile *f = new TFile("/home/suman/Fpythia/Final_Pythia_MCdata/PP_4vec_PThat80-7000_array.root");  // load the root file 
+  //TFile *f = new TFile("/home/suman/Fpythia/Final_Pythia_MCdata/PP_4vec_PThat80-7000_array.root");  // load the root file 
  
   TFile* outfile = new TFile(argv[2],"RECREATE"); // output file
-
 
 
 //********************************************************************************************************
@@ -388,8 +391,4 @@ int arrayind[4] ={3,9,18,33};
 */
   return thout;
 
-}   //end of rebin_hist functiom
-
-
-
- 
+}   //end of rebin_hist functiom 
